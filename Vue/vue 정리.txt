@@ -35,7 +35,8 @@ https://codedragon.tistory.com/2693
 	})
   </script>
   
-  
+(7) 리액티브 시스템(reactive system)
+     
   
    
 4. _3/NewFile.jsp
