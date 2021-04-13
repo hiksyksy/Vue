@@ -1,0 +1,17 @@
+1. https://kr.vuejs.org/v2/examples/index.html 접속해서 Vue.js로 할 수 있는 기능을 살펴보자
+
+2. Vue.js는 "데이터와 뷰를 연결해 주는 역할"
+   MVVM(Model-View-ViewMode)
+   Model(Vue 안에 준비된 데이터)과 View(HTML에서 표시되는 요소), 그리고  ViewModel(View와 Model을 어떻게 연결할까)로 나누어 생각하는 방식입니다.
+  (1) 데이터는 무엇인가?(Model)
+            웹 페이지에서 바뀌는 부분은 어디인가? 그러기 위해서 필요한 데이터를 생각할 것
+  (2) 표시되는 요소는 무엇인가?(View)
+           그 데이터가 HTML의 어느 부분에서 어떤 형식으로 표시되는가 생각할 것
+  (3) 어떤 식으로 연결되는가?(ViewModel)
+       HTML의 어디가 조작될 때 데이터가 어떤 형식으로 변화되는가 생각할 것   
+
+3. 설치
+  (1) CDN(Content Delivery Network) 방식 
+           네트워크에 공개된 라이브러리를 직접 읽어 들여 실행하는 방법입니다.         
+          개발용 "vue.js"와 공개용 "vue.min.js"가 있습니다.
+          개발용은 프로그램에 문제가 있을 경우 경고를 출력해 줍니다.     

@@ -52,23 +52,54 @@ this.$watch('value', function (newVal, oldVal) {
 })
    
  --%>
-  <div id="app">
-     <p>{{width}}의 절반은 {{halfWidth}}입니다.</p>
-  </div>
+   <div id="app">
+  <input v-model.number="budget">원 이하 필터링하기 
+  <input v-model.number="limit">개의 결과 출력하기
+  <button v-on:click="order=!order">변경하기</button>
+  <p>{{ matched.length }}개 중에 {{ limited.length }}개를 출력하고 있습니다.</p>
+  <ul>
+    <!-- v-for에 최종 결과라고 할 수 있는 산출 속성 limited 사용하기 -->
+    <li v-for="item in limited" v-bind:key="item.id">
+      {{ item.name }} {{ item.price }}원
+    </li>
+  </ul>
+</div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
   <script>
     var app=new Vue({
     	el:'#app',
     	data:{
-    	 width:800
+    		budget:300,
+    		limit:2,
+    		list:[
+    			{id:1,name:'사과',price:100},
+    			{id:2,name:'바나나',price:200},
+    			{id:3,name:'딸기',price:400},
+    			{id:4,name:'오렌지',price:400},
+    			{id:5,name:'메론',price:500}
+    		]
     	},
+    	// sorted를 새로 추가하기
+        sorted: function() {
+          return _.orderBy(this.matched, 'price', this.order ? 'desc' : 'asc')
+        },
     	computed:{
-    		halfWidth: function(){
-    			return this.width/2
+    		matched:function(){
+    			return this.list.filter(function(item){  //list항목을 한 개씩 가져와서 price의 값과 budget를 비교해서
+    				                                     //item.price <= this.budget 인 경우 리턴합니다.
+    				return item.price <= this.budget      
+    			},this)                                  //filter()안에서 사용할 this를 넘깁니다. 
+    		},
+    		limited:function(){ //matched로 리턴한 데이터를 limit 조건을 걸어 리턴하는 산출 속성
+    			return this.matched.slice(0,this.limit)
+    		}
+    	},
+    	watch:{
+    		'this.limit': function(newValue, oldValue){
+    			console.log(oldValue + "=>" + newValue)
     		}
     	}
     })
-    console.log("=>" + app.halfWidth)
   </script>
 </body>
 </html>
