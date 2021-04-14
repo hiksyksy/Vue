@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>		
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	</head>
+	
+	<body>
+		<h2>HTML로 표시하는 예제</h2>
+		<div id="app">
+			1. Mustache         <p>{{ myText }}</p>
+			2. v-text="myText"  <p v-text="myText"></p>
+			3. v-html="myText"  <p v-html="myText"></p>
+		</div>
+
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					myText:'<h1>Hello!!!</h1>'
+				}
+			})
+		</script>
+	</body>
+</html>
