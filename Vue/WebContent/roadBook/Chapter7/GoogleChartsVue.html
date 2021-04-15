@@ -12,8 +12,8 @@
 		<h3>선호하는 점심 메뉴 투표</h3>
 		<div id="chart_div" style="height: 500px;"></div>
 		<div id="app">
-			<li v-for="(item, c) in dataArray" v-if="c>0">{{item[0]}} : {{item[1]}}
-				<button v-on:click="addOne(c)">한표</button>
+			<li v-for="(item, index) in dataArray" v-if="c>0">{{item[0]}} : {{item[1]}}
+				<button v-on:click="addOne(index)">한표</button>
 			</li>
 		</div>
 
@@ -45,10 +45,11 @@
 					dataArray:orgdata
 				},
 				methods: {
-					addOne: function(val) {
-						var obj = this.dataArray[val];
-						obj[1]++;
-						this.dataArray.splice(val, 1, obj);
+					addOne: function(index) {
+						var obj = this.dataArray[index]; //투표한 배열을 가져옵니다. 
+						                                  //예로 도시락을 버튼을 클릭하면 ['도시락', 3]를 obj에 저장하고
+						obj[1]++; //                      //3의 값을 1증가 시킵니다.  
+						this.dataArray.splice(index, 1, obj);//splice 통해 ['도시락', 3]=>['도시락', 4]로 넣어 값을 변경합니다.
 						drawBasic();
 					}
 				}

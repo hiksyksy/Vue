@@ -10,27 +10,26 @@
 	</head>
 	
 	<body>
-		<h2>각각 다른 카운팅을 하는 컴포넌트 예제</h2>
+		<h2>컴포넌트에 HTML의 태그에서 값을 전달하는 예제 = props 옵션</h2>
 		<div id="app">
-			<my-component></my-component>
-			<my-component></my-component>
+			<my-component my-name="철수"></my-component>
+			<my-component my-name="영희"></my-component>
 			<my-component></my-component>
 		</div>
-
+		
 		<script>
 			var MyComponent = {
-				template: '<p class="my-comp">카운터  <button v-on:click="addOne">추가</button> {{ count }}</p>',
-				data: function () {
-					return {
-						count: 0
-					}
+				template: '<p class="my-comp">나는 {{ myName }} 입니다.</p>',
+				props: {
+					myName: String  //자바스크립트 myName(카멜케이스)은 HTML에서 my-name(케밥케이스)로 사용합니다.
 				},
-				methods: {
-					addOne: function() {
-						this.count++;
+				created: function () {	// 인스턴스가 작성된 후에 실행된다.
+					if (this.myName == null) {
+						this.myName = "이름없음"; //<my-component></my-component>에는 my-name속성이 없습니다.
 					}
-				},
+				}
 			}
+	
 			new Vue({
 				el: '#app',
 				components: {

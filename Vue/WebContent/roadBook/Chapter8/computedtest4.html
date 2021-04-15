@@ -10,7 +10,7 @@
 	<body>
 		<h2>문자를 입력하면 그 문자를 표함한 항목만 표시하는 예제 </h2>
 		<div id="app">
-			<input v-model="findWord">
+			<input v-model="findWord" type="search">			
 			<ul>
 				<li v-for="item in findItems">{{item}}</li>
 			</ul>
@@ -29,7 +29,7 @@
 						if (this.findWord) {
 							return this.items.filter(function(value) {
 								return (value.indexOf(this.findWord) > -1);
-							}, this);
+							},this);
 						} else {
 							// this.findWord 가 공백일땐 리스트를 그대로 반환한다.
 							return this.items;

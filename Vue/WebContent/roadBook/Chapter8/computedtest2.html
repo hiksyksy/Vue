@@ -10,7 +10,7 @@
 	<body>
 		<h2>단가와 개수를 입력하면 세금포함 금액을 계산하는 예제</h2>
 		<div id="app">
-			<input v-model.number="price" type="number">원 x
+			<input v-model.number="price" type="number" step="1000" >원 x
 			<input v-model.number="count" type="number">개
 			<p>　　　합계 {{ sum }} 원</p>
 			<p>세금포함 {{ taxIncluded }} 원</p>

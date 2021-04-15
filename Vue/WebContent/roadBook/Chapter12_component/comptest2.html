@@ -10,7 +10,7 @@
 	</head>
 	
 	<body>
-		<h2>컴포넌트를 만들어서 표시하는 예제</h2>
+		<h2>각각 다른 카운팅을 하는 컴포넌트 예제</h2>
 		<div id="app">
 			<my-component></my-component>
 			<my-component></my-component>
@@ -19,7 +19,17 @@
 
 		<script>
 			var MyComponent = {
-				template: '<p class="my-comp">Hello</p>'
+				template: '<p class="my-comp">카운터  <button v-on:click="addOne">추가</button> {{ count }}</p>',
+				data: function () {
+					return {
+						 count: 0
+					}
+				},
+				methods: {
+					addOne: function() {
+						this.count++;
+					}
+				},
 			}
 			new Vue({
 				el: '#app',
@@ -28,7 +38,7 @@
 				}
 			})
 		</script>
-		
+
 		<style>
 			.my-comp {
 				width: 300px;
@@ -39,5 +49,6 @@
 				padding: 8px;
 			}
 		</style>
+		
 	</body>
 </html>

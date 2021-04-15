@@ -1,3 +1,4 @@
+
 뷰의 라이프 사이클
 1. beforeCreate 단계 - 가장 먼저 실행 되는 훅
 2. created 단계 - 뷰 컴포넌트내에서 competed, 다양한 메서드 만들기, watch를 이용한 특정한 데이터 감시,

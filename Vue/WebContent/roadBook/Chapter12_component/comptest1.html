@@ -10,34 +10,25 @@
 	</head>
 	
 	<body>
-		<h2>컴포넌트에 값을 전달하는 예제</h2>
+		<h2>컴포넌트를 만들어서 표시하는 예제</h2>
 		<div id="app">
-			<my-component my-name="철수"></my-component>
-			<my-component my-name="영희"></my-component>
+			<my-component></my-component>
+			<my-component></my-component>
 			<my-component></my-component>
 		</div>
-		
+
 		<script>
 			var MyComponent = {
-				template: '<p class="my-comp">나는 {{ myName }} 입니다.</p>',
-				props: {
-					myName: String
-				},
-				created: function () {	// 인스턴스가 작성된 후에 실행된다.
-					if (this.myName == null) {
-						this.myName = "이름없음";
-					}
-				}
+				template: '<p class="my-comp">Hello</p>'
 			}
-	
 			new Vue({
 				el: '#app',
 				components: {
-					'my-component': MyComponent
+					'my-component': MyComponent  //컴포넌트 태그명:컴포넌트 오브젝트명
 				}
 			})
 		</script>
-
+		
 		<style>
 			.my-comp {
 				width: 300px;
@@ -48,6 +39,5 @@
 				padding: 8px;
 			}
 		</style>
-		
 	</body>
 </html>
