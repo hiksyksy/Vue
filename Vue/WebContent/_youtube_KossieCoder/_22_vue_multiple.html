@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+		<style>
+		  
+		</style>
+	</head>
+	<body>
+		<!-- el: "#app" 영역 밖에서 {{name}}을 사용한 경우 
+		 Vue.js
+         {{name}}
+		-->
+		<div id="app">
+		   {{name}}
+		</div>
+		<li>{{name}}</li>
+		
+		<script>
+		new Vue({
+			el: "#app",
+			data: {
+				name:'Vue.js'
+			}
+		})
+		</script>
+	</body>
+</html>

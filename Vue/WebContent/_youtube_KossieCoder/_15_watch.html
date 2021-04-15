@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	</head>
+	<body>
+		<h2>
+		   <!--  computed vs methods
+		     1. computed는 한 번 계산하면 3곳에서 사용가능합니다.
+		        {{reverseMessage}}  - 변수로 취급
+		     2. methods는 호출할 때 마다 실행됩니다.
+		         {{reverseMessage()}}  - 함수를 호출하는 방식으로 사용 -->
+		</h2>
+		<div id="app">
+		  {{message}}<br>
+		  <button @click="changeMessage">Click</button>
+		   {{updated}}
+		</div>
+		
+		<script>
+		new Vue({
+			el: "#app",
+			data: {
+				message:'안녕하세요!',
+				updated:'아니오'
+			},
+			methods:{  
+				changeMessage(){
+					this.message='사랑해'
+				}
+			},
+			computed:{
+				 reverseMessage(){
+					return this.message.split('').reverse().join('')
+				} 
+			},watch:{
+				message(newVal, oldVal){ //data의 message
+					alert(newVal + " : " + oldVal)
+				    this.updated='네'
+				}
+			}
+		})
+		</script>
+	</body>
+</html>

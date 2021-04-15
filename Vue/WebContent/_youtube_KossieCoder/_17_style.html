@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+		<style>
+		  .red{
+		  color:red
+		  }
+		  .green{
+		    color:green
+		  }
+		  .font-bold{
+		    font-weight:bold
+		  }
+		</style>
+	</head>
+	<body>
+		<!-- 
+		  css의 font-bold => 자바스크립트에서 ''안에 작성('font-bold')
+		 -->
+		<div id="app">
+		  <div class="red green">Hello</div>
+		  <div :style="{color:red, fontSize:size}">Hello</div>
+		</div>
+		
+		<script>
+		new Vue({
+			el: "#app",
+			data: {
+				red:'red',
+				size:'20px'
+			}
+		})
+		</script>
+	</body>
+</html>

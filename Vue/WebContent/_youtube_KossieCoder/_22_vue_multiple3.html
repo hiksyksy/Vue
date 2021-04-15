@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+		<style>
+		  
+		</style>
+	</head>
+	<body>
+		<!-- el: "#app" 영역 밖에서 {{name}}을 사용한 경우 
+		 Vue.js
+         {{name}}
+         
+                   여러개의 인스턴스를 이용합니다.
+		-->
+		<div id="app">
+		   {{name}}
+		   <button @click="changeText">Click</button>
+		</div>
+		
+		<div id="app-1">
+		{{name}}		
+		<button @click="changeText">Click</button>
+		</div>
+		
+		
+		<script>
+		const app = new Vue({
+			el: "#app",
+			data: {
+				name:'Vue.js'
+			},
+			methods:{
+				changeText(){
+					app1.name = "#app:changetText"  //app1 인스턴스의 name 수정
+				}
+			}
+		})
+		
+		const app1 = new Vue({
+			el: "#app-1",
+			data: {
+				name:'좋아요'
+			},
+			methods:{
+				changeText(){
+					this.name = "#app-1 : changetText"
+				}
+			}
+		})
+		</script>
+	</body>
+</html>

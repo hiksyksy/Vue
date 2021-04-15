@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+		<style>
+		  .red{
+		  color:red
+		  }
+		  .green{
+		    color:green
+		  }
+		  .font-bold{
+		    font-weight:bold
+		  }
+		</style>
+	</head>
+	<body>
+		<!-- 
+		 v-if : 조건문
+		 여러개의 엘리먼트를 동시에 보여주고 사라지게 할려면 26,27,28세개를 부모로 하는 엘리먼트에 v-if를 사용합니다.
+		 -->
+		<div id="app">
+		 <div v-if="number == 1">
+		  <div>1</div>
+		  <div>2</div>
+		  <div>3</div>
+		 </div>
+		  <div v-else-if="number == 2">HI</div>
+		  <div v-else>No</div>
+		  <button @click="increseNumber">Increase</button>{{number}}
+		</div>
+		
+		<script>
+		new Vue({
+			el: "#app",
+			data: {
+				number:1
+			},methods:{
+				increseNumber(){
+					this.number++
+				}
+			}
+		})
+		</script>
+	</body>
+</html>
