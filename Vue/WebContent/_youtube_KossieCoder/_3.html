@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue.js sample</title>
+		<link rel="stylesheet" href="style.css" >
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	</head>
+
+	<body>
+		<h2>data의 프로퍼티 name과 나이 출력</h2>
+		<div id="app">
+			이름 : {{person.name}}, 나이 : {{person.age}}
+		</div>
+		
+		<script>
+		new Vue({
+			el: "#app",
+			data: {
+				person:{name:"Vue.js",age : 23}				
+			}
+		})
+		</script>
+	</body>
+</html>
