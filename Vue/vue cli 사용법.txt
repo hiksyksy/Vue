@@ -1,0 +1,48 @@
+1.   https://nodejs.org/en/ 접속
+     node.js 설치
+
+2. Visual Studio Code 실행
+
+3. Terminal에서 node 설치 확인
+   
+C:\파이썬실습\응용>node -v
+v14.16.1
+
+C:\파이썬실습\응용>npm -v
+6.14.12
+
+
+4. vue cli가 터미널 어떤 폴어 위해에서도 실행 할 수 있도록 -g 옵션줍니다.
+C:\파이썬실습\응용>npm install -g @vue/cli
+맥 사용자는 sudo npm install -g @vue/cli 로 실행합니다.
+
+
+5. vue 설치 확인법
+C:\파이썬실습\응용>vue --version
+@vue/cli 4.5.12
+
+
+6. vue-cli 설치하기 
+PS C:\vue\ex> vue.cmd create test1
+
+7. Visual Studeio Code에서 File-Open Folder 선택
+   c:\vue\ex\test1
+
+   폴더 구조
+   (1) node_modules : vue.js에 사용하는 npm패키지들이 node_modules에 들어있습니다.
+                      @vue : vue 패키지입니다.
+   (2) package.json : 프로젝트 할 때 필요한 dependency 
+   (3) main.js :   
+
+8. PS C:\Vue\ex\test1> npm run serve
+
+
+npm 패키지에서 사용하는 
+vue cli
+npx @vue/cli create test2
+
+=======================================Todo app 만들기 ============================
+9. PS C:\Vue\ex\test2> vue.cmd create todo
+10. Visual Studeio Code에서 File-Open Folder 선택
+   c:\vue\ex\todo
+11. PS C:\Vue\ex\test2\todo> npm run serve
