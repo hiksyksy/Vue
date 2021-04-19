@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>message 출력</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app-8">
+  <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id"
+    >{{computedMessage}}</todo-item>
+  </div>
+  <script>
+  Vue.component('todo-item', {
+	  props: ['todo'],
+	  template: '<li>{{ todo.text }}</li>'
+	})
+
+	var app7 = new Vue({
+	  el: '#app-8',
+	  data: {
+		    groceryList: [
+		      { id: 0, text: 'Vegetables' },
+		      { id: 1, text: 'Cheese' },
+		      { id: 2, text: 'Whatever else humans are supposed to eat' }
+		    ]
+		  },
+	  computed:{
+		  computedMessage:function(){
+			  return this.message + '!'  //함수로 인해 산출되는 데이터로 이 데이터를 '산출속성'이라고 합니다.
+		  }
+	  }
+	})
+  </script>
+</body>
+</html>

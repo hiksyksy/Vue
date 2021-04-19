@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>message 출력</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--
+       모든 조건을 만조하지 않는 경우
+    
+    === 일치 연산자(자료형과 값 일치 확인)
+ -->
+  <div id="app">
+    <div v-if="type === '1'">
+      type는 '1'
+    </div>
+    <div v-else-if="type=== '2'">
+      type는 '2'
+    </div>
+    <div v-else>
+           모든 조건을 만조하지 않는 경우
+    </div>
+  </div>
+  <script>
+    var app=new Vue({
+    	el:'#app',
+    	data:{
+    		type:1
+    	}
+    })
+  </script>
+</body>
+</html>

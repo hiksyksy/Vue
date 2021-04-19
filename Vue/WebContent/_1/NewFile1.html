@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>vue.js시작</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{message}}</h1>
+  </div>
+  <script>
+    var app=new Vue({
+    	el:'#app',
+    	data:{message:'Hello Vue.js!'}
+    });
+  </script>
+  
+  <!-- DOM과 데이터가 연결된 반응형의 예 입니다.
+       F12 - Console에서
+       app.message="좋아요" 입력 후 엔터 
+    결과) "좋아요"
+   -->
+</body>
+</html>

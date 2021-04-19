@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>message 출력</title>
+<!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app-2">
+  
+  <!-- 디렉티브 : 'v-'로 시작하는 속성을 의미하며 주고 데이터 바인딩과 관련된 처리를 실시합니다. -->
+  <span v-bind:title="message">
+     엘리먼트의 속성 title에 Vue의 data인 "message"가 바인딩 되어
+     마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다!
+  </span>
+</div>
+  <script>
+  var app2 = new Vue({
+	  el: '#app-2',
+	  data: {
+	    message: '이 페이지는 ' + new Date() + ' 에 로드 되었습니다'
+	  }
+	})
+  </script>
+</body>
+</html>

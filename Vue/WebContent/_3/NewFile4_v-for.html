@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>message 출력</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app-4">
+  <ol>
+    <li v-for="item in list">
+      {{ item }}
+    </li>
+  </ol>
+</div>
+  <script>
+  var app4 = new Vue({
+	  el: '#app-4',
+	  data: {
+	    list: ['사과','바나나','딸기'] 
+	  }
+	})
+  </script>
+</body>
+</html>

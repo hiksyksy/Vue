@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>message 출력</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<!--  div 영역 클릭시 1씩 증가됩니다. -->
+<body>
+  <div id="app" v-on:click="add">
+    <h1>{{state}}</h1>
+  </div>
+  <script>
+    var app=new Vue({
+    	el:'#app',
+    	data:{
+    		state: {count:0}
+    	},
+    	methods:{
+    		add:function(){this.state.count++} //vue내의 state에 접근하기 위해서는 this사용합니다.
+    	}
+    })
+    
+  </script>
+</body>
+</html>
