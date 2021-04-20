@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>message 출력</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+  <input placeholder="변경할 name을 입력하세요" v-model="set_name">
+  <input placeholder="변경할 hp를 입력하세요"   v-model="set_hp">
+  <ul>
+    <li v-for="(item, index) in list" v-bind:key="item.id">
+      ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+      <!-- 변경 버튼을 v-for 내부에 만들기 -->
+      <button v-on:click="update(index)">몬스터 변경하기</button>
+    </li>
+  </ul>
+</div>
+  <script>
+    var app=new Vue({
+    	el:'#app',
+    	data:{
+    		list:[
+    			{id:1, name:'슬라임',hp:100},
+    			{id:2, name:'고블린',hp:200},
+    			{id:3, name:'드래곤',hp:500}
+    		],
+    		set_name:"",
+    		set_hp:""
+    	},
+    	methods:{
+    	    update: function (index) {
+    	      if(this.set_name=="" || this.set_hp==""){
+    	    	  alert('데이터를 입력하세요')
+    	    	  return false;
+    	      }
+    	      var obj={id:this.list[index].id,
+    	    		   name:this.set_name,
+    	    		   hp:this.set_hp}
+    	      this.$set(this.list,index,obj) //this.$set(<변경할 데이터>,<인덱스 또는 키>,<새로운값>)
+    	    }
+    	},//methods
+    	created:function(){
+    		this.list.forEach(function(item){
+    			this.$set(item,'active',false)
+    		},this);
+    	}//created
+    })//Vue
+  </script>
+</body>
+</html>

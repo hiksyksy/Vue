@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>v-for 리터럴 이용한 출력</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--
+  (1) v-pre 디렉티브 : 탬플릿 컴파일 생략하기
+  자식 컴포넌트를 포함한 내부의 HTML을 컴파일하지 않고 정적 콘텐츠로 다룰 때 사용합니다.
+  
+  (2) v-once 디렉티브 : 템플릿을 한 번만 컴파일하고 이후에는 정적 콘텐츠로 다루고 싶을 때 사용합니다.
+          한 번만 렌더링된 후 message 속성이 변경되어도 DOM은 변경되지 않습니다.  
+      <div id="app"><a href="list">Hello안녕하세요 Vue!</a></div>
+  
+  (3) v-text 디렉티브 : 요소 내부의 텍스트 콘텐츠가 단일 Mustache만으로 구성되어 있을 경우
+                      v-text 디렉티브를 사용해서 마찬가지로 텍스트 콘텐츠를 바인드할 수 있습니다.
+  (4) v-html 디렉티브 : Mustache를 사용한 렌더링을 실시할 때는 XSS 대책 때문에 HTML엔티티화가 이루어 집니다.
+      HTML태그를 직접 출력하고 싶을 때로 v-html디렉티브를 사용합니다. 
+       F12 결과 - <span>Hello <strong>Vue.js!</strong></span>
+             화면 결과  - Hello Vue.js!         
+ -->
+  <div id="app">
+    <span v-html="message"></span>
+  </div>
+  <script>
+  var app = new Vue({
+	  el: '#app',
+	  data: {
+	    message: 'Hello <strong>Vue.js!</strong>'
+	  }
+	})
+  </script>
+</body>
+</html>

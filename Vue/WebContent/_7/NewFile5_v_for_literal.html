@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>v-for 리터럴 이용한 출력</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+  <p>
+   <span v-for="item in 15">{{item}} </span>
+  </p>
+  
+   <p>
+   <span v-for="item in [1, 5, 10, 15]">{{item}} </span>
+  </p>
+ 
+  <p>
+   <span v-for="item in text">{{item}}</span>
+  </p>
+</div>
+  <script>
+    var app=new Vue({
+    	el:'#app',
+    	data:{
+    		text:"Vue"
+    	}
+    })//Vue
+  </script>
+</body>
+</html>

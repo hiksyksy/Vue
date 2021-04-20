@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>checkbox 한 개</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--
+ 체크박스는 기본적으로 데이터를 불(boolean)으로 다룹니다.
+ 
+ 체크 상태에 따라 요소 값을 설정하고 싶은 경우에 true-value, false-value 속성을 사용합니다.
+  <input type="checkbox" v-model="val" true-value="yes" false-value="no">{{val}}
+ -->
+  <div id="app">
+     <input type="checkbox" v-model="val">{{val}} <br>
+     
+     <input type="checkbox" v-model="val2" true-value="yes" false-value="no">{{val2}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    var app=new Vue({
+    	el:'#app',
+    	data:{    		
+    	      val:true,
+    	      val2:true
+    	}
+    })
+  </script>
+</body>
+</html>

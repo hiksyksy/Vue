@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>textarea</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--
+ textarea는 다음과 같이 Mustache를 사용한 데이터 바인딩이 불가능합니다.
+ <textarea v-model="message">{{message}}</textarea>
+ -->
+  <div id="app">
+     <textarea v-model="message"></textarea>
+        <pre>{{message}}</pre>
+     <textarea v-model="message" rows="10">textarea:{{message}}</textarea>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    var app=new Vue({
+    	el:'#app',
+    	data:{
+    		
+    	message:'Hello!'
+    	}
+    })
+  </script>
+</body>
+</html>

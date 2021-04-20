@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>message 출력</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+  <!-- 
+  v-if="item.hp" : 자바스크립트는 숫자값이 0이면 false를 리턴합니다. 
+  v-if="false" 이면 해당 엘리먼트가 사라집니다.
+   -->
+  <ul>
+    <li v-for="(item, index) in list" v-bind:key="item.id" v-if="item.hp">
+      ID.{{ item.id }} {{ item.name }} HP.{{ item.hp }}
+      <span v-if="item.hp<50">큰 피해...!</span>
+      <span v-if="item.hp==10">저는 사라집니다.</span>
+      <button v-on:click="doAttack(index)">공격하기</button>
+    </li>
+  </ul>
+</div>
+  <script>
+    var app=new Vue({
+    	el:'#app',
+    	data:{
+    		list:[
+    			{id:1, name:'슬라임',hp:100},
+    			{id:2, name:'고블린',hp:200},
+    			{id:3, name:'드래곤',hp:500}
+    		]
+    	},
+    	created:function(){
+    		this.list.forEach(function(item){
+    			this.$set(item,'active',false)
+    		}, this)
+    	},
+    	methods:{
+    		doAttack:function(index){
+    			this.list[index].hp -= 10;
+    		}
+    	}
+    })//Vue
+  </script>
+</body>
+</html>
