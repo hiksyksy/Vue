@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>select</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 <%--
@@ -15,22 +15,39 @@
    
  --%>
   <div id="app">
-     <p>{{width}}의 절반은 {{halfWidth}}입니다.</p>
+     <p>X: {{halfPoint.x}}입니다.</p>
+     <p>Y: {{halfPoint.y}}입니다.</p>
+     <p>test: {{test}}입니다.</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
   <script>
     var app=new Vue({
     	el:'#app',
     	data:{
-    	 width:800
+    	 width:800,
+    	 height:600
     	},
     	computed:{
     		halfWidth: function(){
     			return this.width/2
+    		},
+    		halfHeight: function(){
+    			return this.height/2
+    		},
+    		halfPoint : function(){
+    			return{
+    				x:this.halfWidth,
+    				y:this.halfHeight
+    			}
+    		}, 
+    		test:function(){
+    			//return 1
+    			 this.halfPoint.x=1
+    			 return this.halfPoint.x
+    			
     		}
     	}
     })
-    console.log("=>" + app.halfWidth)
   </script>
 </body>
 </html>
