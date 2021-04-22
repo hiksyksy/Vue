@@ -4,29 +4,22 @@
 <meta charset="UTF-8">
 <title>axios</title>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
   
   <div id="app">
   <button v-on:click="fetchData">get data</button>
-  <p>{{items}}</p>
+  <!-- <p>{{items}}</p> -->
   <table class="table">
-    <tr><th>인덱스</th><th>이름</th><th>수</th></tr>
-    <tr v-for="(item,index) in items"><td>{{index}}</td><td>{{item.name}}</td><td>{{item.su}}</td></tr>
+    <tr><th>인덱스</th><th>아이디</th><th>이름</th><th>이메일</th><th>주소</th></tr>
+    <tr v-for="(item,index) in items">
+       <td>{{index}}</td><td>{{item.id}}</td><td>{{item.name}}</td>
+       <td>{{item.email}}</td><td>{{item.address}}</td></tr>
   </table>
-  
-  <hr>
-  <p v-for="(item,index) in items">index:{{index}}
-                                   name :{{item.name}} 
-                                   su   : {{item.su}}</p>
-  <hr>
-  
   </div>
-</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
   <!--
   액시오스
 뷰에서 권고하는 HTTP 통신 라이브러리는 액시오스(Axios)입니다. 
@@ -34,8 +27,21 @@ Promise 기반의 HTTP 통신 라이브러리이며 상대적으로 다른 HTTP 
 API가 다양합니다.
 
 #액시오스 설치
+
+Cors
+CORS란  Cross Origin Resource Sharing의 약자로, 현재 Application의 도메인(웹페이지)에서 다른 웹페이지 도메인으로 리소스가 요청되는 경우를 얘기합니다. 예를 들면, 웹페이지인 http://web.com 에서 
+
+API서버 URL인 http://api.com 도메인으로 API를 요청하면 http 형태로 요청이 되므로 
+
+브라우저 자체에서 보안 상 이유로 CORS를 제한하게 되는 현상을 말합니다.
+
+405 Method Not Allowed
+
+ 
+
+SPA(Single Page Application) 기반 앱을 RESTful API연동 방식으로 개발을 하다보면 API 서버와 웹페이지서버가 각각 따로 운영이 되므로 CORS 문제에 항상 부딪히는 경우가 다반사입니다.
+
    -->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
   new Vue({
 	  el: '#app',
@@ -45,11 +51,19 @@ API가 다양합니다.
 	  methods: {
 	    fetchData: function() {
 	      var arr=this.items;	
-	      axios.get('/Vue/getJson')
+	      axios.get('https://jsonplaceholder.typicode.com/users/',{
+	    	  headers: {
+	      		'Access-Control-Allow-Origin': '*',
+	      		'Content-Type': 'application/json; charset = utf-8',
+	    		"Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+     	        "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+	      	}
+	      })
 	        .then(function(response) {
 	        	 console.log(response.data)
 	        	 response.data.forEach( 
-	        			 (item) =>  arr.push({name:item.name,su:item.su})
+	        			 (item) =>  arr.push({id:item.id,
+	        				 name:item.name,email:item.email, address:item.address})
 	        	 )
 	        })
 	        .catch(function(error) {

@@ -15,10 +15,19 @@
 4. 산출 속성은 기본적으로 원래 데이터에 영향을 주지 않습니다.
       따라서 산출 속성에 값을 대입하면 오류가 발생합니다.   
 5. 산출 속성 halfWidth에 get와 set을 구현하면 width와 halfWidht가 양방향 흐름을 가지게 되어 항상 동기화됩니다.      
+   <input v-model.number="halfWidth">에 데이터를 입력하면 set이 실행됩니다.
+   (1)set:function(val){console.log('set');
+    			        this.width=val*2} 
+           실행되고 여기서 val은 <input v-model.number="halfWidth">에서 입력한 값입니다.
+    (2) get이 실행됩니다.
+        get:function(){ console.log('get');
+    			                 return this.width/2
+    			       }
+             이 실행됩니다.    			          			        
  -->
   <div id="app">
      <input v-model.number="width">{{width}} <br>
-     <input v-model.number="halfWidth">{{halfWidth}}
+     <input v-model.number="halfWidth">
   </div>
   <script>
     var app=new Vue({
@@ -28,8 +37,12 @@
     	},
     	computed:{
     		halfWidth: {
-    			get:function(){return this.width/2},
-    			set:function(val){this.width=val*2}
+    			get:function(){ console.log('get');
+    			                 return this.width/2
+    			                 },
+    			set:function(val){console.log('set');
+    			                 this.width=val*2
+    			                 }
     		}
     	}
     })
