@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>select</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-<%--
+<!--
  1.필터란 문자 수를 반올림하거나 쉼표를 넣는 등의 텍스트 기반 변환 처리에 특화된 기능입니다.
  (1) 로컬로 등록 - this 사용하지 않습니다.
  (2) 전역에 등록
@@ -20,7 +20,7 @@
 
  (2) v-bind로 사용하는 경우
     <div v-bind:id="대상 데이터 | 필터 이름"></div>     
- --%>
+ -->
  <div id="app">
    {{ price | localeNum}}  
 </div>

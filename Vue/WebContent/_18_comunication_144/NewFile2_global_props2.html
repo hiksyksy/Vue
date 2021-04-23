@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>부모 템블릿 -> 자식 컴포넌트로 데이터 전달은 props를 사용</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+ <div id="app">
+  <comp-child val='자식A'></comp-child>
+  <comp-child val='자식B'></comp-child>
+</div>
+  <script>
+  Vue.component('my-component',{
+	  template:'<p><comp-child></comp-child></p>'
+  })
+  Vue.component('comp-child',{
+	  template:'<div><p>{{val}}</p><img src="../image/strawberry.png"></div>',
+	  props:['val']
+  })
+  new Vue({
+	  el:"#app"
+  })
+  </script>
+</body>
+</html>

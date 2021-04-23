@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Template literals
+:https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals</title>
+</head>
+<body>
+ <script>
+ /*
+    템플릿 리터럴은 문자열에 변수를 표현할 때 보기 쉽게 해 주는 기능입니다.
+   문당을 역따옴표로 묶고 변수에 대해 ${변수명}을 표시하여 작성할 수 있습니다.
+ */
+   console.log("안녕하세요?\n하하");
+   console.log(`안녕하세요?
+		              하하`);
+   let a=10,b=20;
+   console.log('a=' + a + ", b=" + b + ", a+b=" + (a+b));
+   console.log(`a=${a}, b=${b}, a+b=${a+b}`);
+   
+   //https://uxgjs.tistory.com/134
+   let a2 = "홍길동"; let b2 = "월매"; let c2 = 50; let d2 = 80; 
+   // 기존방식 (복잡함) var str = a + "와 " + b + "의 나이를 합산하면 " + (c + d) + "살 입니다."; 
+   
+   // 템플릿 리터럴 사용 방식 (간결함) 
+   let str = `${a2}와 ${b2}의 나이를 합산하면 ${c2 + d2}살 입니다.`;
+   console.log(str);
+ </script>
+</body>
+</html>

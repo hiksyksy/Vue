@@ -38,6 +38,7 @@
     			{id:4,name:'오렌지',price:300},
     			{id:5,name:'메론',price:500}
     		],
+    		result:[],
     		order:false
     	},
     	computed:{
@@ -51,6 +52,7 @@
     		sorted:function(){
     			message.innerHTML +=("this.order=" + this.order+"<br>")
     			return _.orderBy(this.matched, 'price', this.order ? 'desc':'asc');
+    			
     		},
     		limited:function(){ //matched로 리턴한 데이터를 limit 조건을 걸어 리턴하는 산출 속성
     			//return this.matched.slice(0,this.limit) //slice(0,this.limit) : 0번 배열 요소에서 this.limit-1 요소까지 추출합니다.
@@ -75,7 +77,7 @@
     			this.order=!order;
     			message.innerHTML +=("change"+"<br>")
     			message.innerHTML +=("change this.limited="+this.limited[0].id+"<br>");
-    			//this.filteredList  = _.orderBy(this.limited, 'price', this.order ? 'desc':'asc');
+    			this.filteredList  =  _.orderBy(this.limited, 'price', this.order ? 'desc':'asc');
     		}
     	}
     })
