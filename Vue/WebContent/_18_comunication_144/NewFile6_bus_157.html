@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>부모 자식 컴포넌트가 아닌 경우</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<!-- 
+  
+ -->
+	<div id="sender-app">
+		<input v-model="text">
+		<button @click="sender">sender</button>
+		<div v-if="text">보낸 데이터 : {{text}}</div>
+		<div v-if="receiveText">받은 데이터 : {{receiveText}}</div>
+	</div>
+	<hr>
+	<div id="receiver-app">		
+		<input v-model="text2">
+		<button @click="sender2">sender</button>
+		<div v-if="text2">보낸 데이터 : {{text2}}</div>
+		<div v-if="receiveText2">받은 데이터 : {{receiveText2}}</div>
+	</div>
+	<script>
+	var bus = new Vue();
+
+	var app1 = new Vue({
+	    el: '#sender-app',
+	    data() {
+	    	return {
+	            text: '',
+	            receiveText: ''
+	        }
+	    },
+	    created() {
+	    	console.log("app1:created")
+	    	bus.$on('message_receive', this.onReceive); //$on() : 이벤트와 데이터를 수신합니다.
+	    	                                     //데이터를 사용하고 싶은 곳에서 원하는 이벤트를 등록해 주어야 합니다.
+	    	                                     //$on(이벤트이름, 콜백함수)
+	    	                                     //이벤트를 한 번만 받고 싶으면 $on 대신 $once를 사용합니다.
+	    	                                     //이벤트 해제는 $off(이벤트이름), 모든 이벤트 해제시에는 $off()를 사용합니다.
+	    },
+	    methods: {
+	    	sender() {
+	    		console.log("app1:sender")
+	            bus.$emit('message_receive2', this.text); //$emit() : 이벤트와 input에 받은 데이터를 다른 컴포넌트로 보냅니다.
+	            this.receiveText = '';
+	        },
+	        onReceive(text) {
+	        	console.log("app1:onReceive=>" + text )
+	        	this.receiveText= text;
+	        	this.text='';
+	        	
+	        }
+	    }
+	});
+
+	var app2 = new Vue({
+	    el: '#receiver-app',
+	    data() {
+	    	return {	           
+	            text2:'',
+	            receiveText2:''
+	        }
+	    },
+	    created() {
+	    	console.log("app2:created")
+	    	bus.$on('message_receive2', this.onReceive);
+	    	
+	    },
+	    methods: {
+	    	sender2() {
+	    		console.log("app2:sender2")
+	            bus.$emit('message_receive', this.text2); //$emit() : 이벤트와 input에 받은 데이터를 다른 컴포넌트로 보냅니다.
+	            this.receiveText2 = '';
+	        },
+	    	onReceive(text) {
+	        	console.log("app2:onReceive=>"+ text)
+	            this.receiveText2= text;
+	        	this.text2='';
+	        }
+	    }
+	});
+	</script>
+</body>
+</html>

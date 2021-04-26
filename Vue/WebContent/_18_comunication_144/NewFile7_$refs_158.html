@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$refs로 focus주기</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!-- 
+  
+ -->
+ <div id="app">
+	<input type="text" ref="idRef" />
+</div>
+
+<script>
+var vm = new Vue({
+	el: '#app',
+	mounted(){
+		this.$refs.idRef.focus();
+	}
+});
+
+  </script>
+</body>
+</html>
