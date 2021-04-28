@@ -12,7 +12,7 @@ C:\파이썬실습\응용>npm -v
 6.14.12
 
 
-4. vue cli가 터미널 어떤 폴어 위해에서도 실행 할 수 있도록 -g 옵션줍니다.
+4. vue cli가 터미널 어떤 폴더에서도 실행 할 수 있도록 -g 옵션줍니다.
 C:\파이썬실습\응용>npm install -g @vue/cli
 맥 사용자는 sudo npm install -g @vue/cli 로 실행합니다.
 
@@ -22,7 +22,7 @@ C:\파이썬실습\응용>vue --version
 @vue/cli 4.5.12
 
 
-6. vue-cli 설치하기 
+6. vue-cli 프로젝트 생성하기
 PS C:\vue\ex> vue.cmd create test1
 
 7. Visual Studeio Code에서 File-Open Folder 선택
