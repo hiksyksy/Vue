@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>https://curryyou.tistory.com/185
+:https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals</title>
+</head>
+<body>
+ <script>
+ //1. 백틱에 데이터 넣기
+  var message=`Hello JavaScript`;
+  console.log(message);
+  
+  //2.백틱으로 줄바꾸기
+  message=`Hello
+  JavaScript`;
+  console.log(message);
+  
+  //3.백틱을 이용한 표현식 삽입
+  var dan=2;
+  var end=9;
+  
+  console.log(`${dan}단`);
+  for(var num=1;num<=end;num++)
+    console.log(`${dan} * ${num} = ${dan * num}`);
+  
+ </script>
+</body>
+</html>
