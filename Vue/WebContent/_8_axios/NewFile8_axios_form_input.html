@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>axios</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  
+  <div id="app" class="container">
+    
+    <form-component v-on:childs-event="parentsMethod"></form-component>
+  
+    <button v-on:click="fetchData" >get data</button>
+    <table class="table" v-if="items.length>0">
+        <tr><th>번호</th><th>id</th><th>e-mail</th><th>pass</th><th>gender</th></tr>
+        <tr v-for="(item,index) in items">
+           <td>{{index+1}}</td><td>{{item.id}}</td>
+           <td>{{item.email}}</td><td>{{item.pass}}</td><td>{{item.gender}}</td></tr>
+     </table>  
+  </div>
+
+
+  <!--
+  액시오스
+뷰에서 권고하는 HTTP 통신 라이브러리는 액시오스(Axios)입니다. 
+Promise 기반의 HTTP 통신 라이브러리이며 상대적으로 다른 HTTP 통신 라이브러리들에 비해 문서화가 잘되어 있고 
+API가 다양합니다.
+
+#액시오스 설치
+   -->
+  <script>
+  formComponent={
+	  template : `	  
+		  <form class="mt-3" @submit.prevent="send">
+			 <div class="input-group mb-3">
+               <input type="email" 
+                      v-model="email" 
+                      class="form-control" 
+                      placeholder="Your Email" 
+                      maxLength="30">              
+               <div class="input-group-append">
+                <span class="input-group-text">@example.com</span>
+               </div>
+            </div>
+            <div class="input-group mb-3">
+               <input type="text" value="test" v-model="id" class="form-control" placeholder="Your id" maxLength="15">                      
+            </div>
+            <div class="input-group mb-3">
+               <input type="password" value="1" v-model="pass" class="form-control" placeholder="Your password" maxLength="15">
+            </div>       
+            <div class="input-group mb-3">
+               <div class="form-check">
+                  <label class="form-check-label mr-5">
+                    <input type="radio" v-model="gender" checked class="form-check-input" value="m">남자
+                  </label>
+                  <label class="form-check-label">
+                    <input type="radio" v-model="gender" class="form-check-input" value="f">여자
+                  </label>
+               </div>                 
+            </div>
+
+            <div class="input-group mb-3">
+              <button class="btn btn-info" type="submit">전송</button>
+            </div>
+       
+	     </form>`,
+	     methods:{
+	    	 send:function(){
+	    		 console.log('send')
+	    		 console.log(`email.value=${this.email}`)
+	    		 console.log(`id.value=${this.id}`)
+	    		 console.log(`gender.value=${this.gender}`)
+	    		 console.log(`pass.value=${this.pass}`)
+	    		 this.$emit('childs-event',{pass:this.pass,gender:this.gender,
+	    			                        email:this.email,id:this.id});
+	    	 }
+	     },
+	     data:function(){
+	    	 return{
+	    		 email:'',
+		    	 id:'',
+		    	 gender:'',
+		    	 pass:''
+	    	 }
+	     }
+     }
+ 
+  
+  app=new Vue({
+	  el: '#app',
+	  data:{
+		items:[]
+	  },
+	  components:{
+		  'form-component':formComponent
+	  },
+	  methods: {		
+		//async는 현재 사용할 함수를 비동기로 처리하겠다는 선언자입니다.
+	    fetchData: async function() {
+	      var arr=this.items=[]; //Vue의 data 옵션에 정의된 items의 주소값을 arr에 저장
+	                             //this.items을 axios의 then()콜백에서 접근 할 수 없습니다.
+	                             //이곳에서 this는 window입니다.
+	       //axios.get 앞에 await를 사용합니다.                     
+	      await axios.get('/Vue/member')
+	        .then( function(response) {
+	        	 console.log(`axios의 then 안 ${window===this}`)
+	        	 console.log(`받아온 데이터 = ${response.data}`)	        	 
+	        	 response.data.forEach( 
+	        			 (item) =>  arr.push(
+	        					     {gender:item.gender,id:item.id,email:item.email,pass:item.pass,gender:item.gender}
+	        					 )
+	        	 )
+	        	
+	        })
+	        .catch(function(error) {
+	          console.log(error);
+	        });	        
+	    
+	    },//fetchData
+	    parentsMethod : async function(obj){
+	    	await axios.post(
+	    			'/Vue/member',
+	    			{
+	    		       params: {id:obj.id,
+	    		    	       email:obj.email,
+	    		    	       pass:obj.pass,
+	    		    	       gender:obj.gender
+	    		    	},
+	    	         }
+	    	).then( function(response) {	        	 
+	        	if(response.data==1){	        		
+	        		app.fetchData();//this.fetchData()는 오류 발생
+	        	}
+	        })
+	        .catch(function(error) {
+	          console.log(error);
+	        });
+	    	
+	    }
+	  }
+	})
+  </script>
+</body>
+</html>

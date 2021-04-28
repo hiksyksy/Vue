@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>axios</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  
+  <div id="app">
+    
+  
+  
+    <button v-on:click="fetchData" >get data</button>
+    <table class="table" v-if="items.length>0">
+        <tr><th>번호</th><th>id</th><th>e-mail</th><th>pass</th><th>gender</th></tr>
+        <tr v-for="(item,index) in items">
+           <td>{{index+1}}</td><td>{{item.id}}</td>
+           <td>{{item.email}}</td><td>{{item.pass}}</td><td>{{item.gender}}</td></tr>
+     </table>  
+  </div>
+
+
+  <!--
+  액시오스
+뷰에서 권고하는 HTTP 통신 라이브러리는 액시오스(Axios)입니다. 
+Promise 기반의 HTTP 통신 라이브러리이며 상대적으로 다른 HTTP 통신 라이브러리들에 비해 문서화가 잘되어 있고 
+API가 다양합니다.
+
+#액시오스 설치
+   -->
+  <script>
+  new Vue({
+	  el: '#app',
+	  data:{
+		items:[]
+	  },
+	  methods: {
+		//출력 결과가 순서적으로 처리하고 싶은 경우
+		//아래의 async 키워드와 axios.get() 앞에 await를 넣어줍니다.
+		/*
+		axios의 then 안 true
+        NewFile6_axios6_async_await.html:52 받아온 데이터 = [object Object],[object Object]
+        NewFile6_axios6_async_await.html:62 axios의 다음 문장
+		*/
+		//async는 현재 사용할 함수를 비동기로 처리하겠다는 선언자입니다.
+	    fetchData: async function() {
+	      var arr=this.items=[]; //Vue의 data 옵션에 정의된 items의 주소값을 arr에 저장
+	                             //this.items을 axios의 then()콜백에서 접근 할 수 없습니다.
+	                             //이곳에서 this는 window입니다.
+	       //axios.get 앞에 await를 사용합니다.                     
+	      await axios.get('/Vue/member')
+	        .then( function(response) {
+	        	 console.log(`axios의 then 안 ${window===this}`)
+	        	 console.log(`받아온 데이터 = ${response.data}`)	        	 
+	        	 response.data.forEach( 
+	        			 (item) =>  arr.push(
+	        					     {gender:item.gender,id:item.id,email:item.email,pass:item.pass,gender:item.gender}
+	        					 )
+	        	 )
+	        	
+	        })
+	        .catch(function(error) {
+	          console.log(error);
+	        });	        
+	    
+	    }//fetchData
+	  }
+	})
+  </script>
+</body>
+</html>

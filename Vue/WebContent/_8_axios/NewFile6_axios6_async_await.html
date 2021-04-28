@@ -41,21 +41,21 @@ API가 다양합니다.
 		items:[]
 	  },
 	  methods: {
-	    fetchData: function() {
+		//출력 결과가 순서적으로 처리하고 싶은 경우
+		//아래의 async 키워드와 axios.get() 앞에 await를 넣어줍니다.
+		/*
+		axios의 then 안 true
+        NewFile6_axios6_async_await.html:52 받아온 데이터 = [object Object],[object Object]
+        NewFile6_axios6_async_await.html:62 axios의 다음 문장
+		*/
+		//async는 현재 사용할 함수를 비동기로 처리하겠다는 선언자입니다.
+	    fetchData: async function() {
 	      var arr=this.items=[]; //Vue의 data 옵션에 정의된 items의 주소값을 arr에 저장
 	                             //this.items을 axios의 then()콜백에서 접근 할 수 없습니다.
 	                             //이곳에서 this는 window입니다.
-	                             //비동기 전송방식인 axios에 의해 axios의 다음 문장 먼저 출력되고
-	                             //then()안의 문장들이 출력되고 있습니다.
-	                             //동기적으로 맞추기 위해 async, await 키워드 추가해서 위 문제를
-	                             //해결하도록 하겠습니다.
-	      /*
-	       axios의 다음 문장
-           NewFile6_axios5.html:51 axios의 then 안 true
-           NewFile6_axios5.html:52 받아온 데이터 = [object Object],[object Object]
-	      */
-	      axios.get('/Vue/getJson')
-	        .then(function(response) {
+	       //axios.get 앞에 await를 사용합니다.                     
+	      await axios.get('/Vue/getJson')
+	        .then( function(response) {
 	        	console.log(`axios의 then 안 ${window===this}`)
 	        	 console.log(`받아온 데이터 = ${response.data}`)	        	 
 	        	 response.data.forEach( 
